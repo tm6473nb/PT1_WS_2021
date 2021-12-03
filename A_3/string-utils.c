@@ -3,57 +3,75 @@
 
 #include "string-utils.h"
 
-void num_chars()
+int num_chars(char * nc_ZK)
 {
-  char nc_ZK[ZK_Size] = {'\0'};
+  int nc_num = 0;
+  int nc_c = 0;
 
-  printf("Geben Sie max. %d Zeichen ein: ", ZK_Size);
-  fgets(nc_ZK, (ZK_Size + 1), stdin);
-  int num = 0;
-  
-  int i;
-  for (i = 0; i < ZK_Size ; i++)
+  while (nc_c == 0)
   {
-    if (nc_ZK[i] != '\0' && nc_ZK[i] != '\n')
-      num++;
-  }
-  printf("\nEs sind %d Zeichen in der Zeichenkette.\n", num);
-}
-
-void to_uppercase()
-{
-  char tu_ZK[ZK_Size] = {'\0'};
-
-  printf("Geben Sie max. %d Zeichen ein: ", ZK_Size);
-  fgets(tu_ZK, (ZK_Size + 1), stdin);
-
-  char ZK_Up[ZK_Size];
-
-  printf("\nDie Zeichenfolge lautet: ");
-  int i;
-  for (i = 0; i < ZK_Size ; i++)
-  {
-    ZK_Up[i] = toupper(tu_ZK[i]);
-    printf("%c", ZK_Up[i]);
-  }
-}
-
-void invert()
-{
-  char inv_ZK[ZK_Size] = {'\0'};
-
-  printf("Geben Sie max. %d Zeichen ein: ", ZK_Size);
-  fgets(inv_ZK, (ZK_Size + 1), stdin);
-  
-  printf("\nDie Zeichenfolge lautet: ");
-
-  int i;
-  for (i = ZK_Size; i >= 0 ; i--)
-  {
-    if (inv_ZK[i] != '\0' && inv_ZK[i] != '\n')
+    if (*nc_ZK == '\n')
     {
-      printf("%c", inv_ZK[i]);
+      nc_c = 1;
+      break;
     }
+    else
+    {
+        nc_num++;
+    }
+    nc_ZK++;
   }
-  printf("\n");
+  return nc_num;
+}
+
+char to_uppercase(char * tu_ZK)
+{
+  int tu_c = 0;
+  int z = 0;
+
+  while (tu_c == 0)
+  {
+    if (*tu_ZK == '\n')
+    {
+      tu_c = 1;
+      *tu_ZK = '\0';
+    }
+    else
+    {
+      if ((*tu_ZK >= 97) && (*tu_ZK <= 122))
+      {
+        *tu_ZK -= 32;
+      }
+    }
+  tu_ZK++;
+  z++;
+  }
+  tu_ZK-= z;
+  return *tu_ZK;
+}
+
+char invert(char * ni_ZK)
+{
+  int i_num;
+  i_num = num_chars(ni_ZK);
+  
+  ni_ZK += i_num;
+  *ni_ZK = '\0';
+  ni_ZK -= i_num;
+
+  int i_z = 0;
+
+  char i_ZK[20];
+
+  for (int i = (i_num - 1); i >= 0; i--)
+  {
+    ni_ZK += i;
+    i_ZK[i_z] = *ni_ZK;
+    ni_ZK-= i;
+    i_z++;
+  }
+
+//Funktioniert noch nicht
+
+  return *i_ZK;
 }

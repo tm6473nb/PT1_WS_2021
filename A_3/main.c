@@ -1,10 +1,16 @@
 #include <stdio.h>
-
 #include "string-utils.h"
 
 int main()
 {
+
+//  printf("%d = %c \n %c +10 = %c",
+//    'A','A',
+//    'A', 'A'+33
+//  );
+  int num;
   int c = 0;
+  char ZK[21];
   char Auswahl;
 
   while (c == 0)
@@ -19,23 +25,35 @@ int main()
     printf("Ihre Auswahl: ");
     scanf("%c", &Auswahl);
     getchar();
-    switch (Auswahl)
+
+    if (Auswahl == '0')
     {
-      case '1':
-        num_chars();
-        break;
-      case '2':
-        to_uppercase();
-        break;
-      case '3':
-        invert();
-        break;
-      case '0':
-        c = 1;
-        break;
-      default:
-        printf("\nDie Eingabe war nicht korrekt!\n");
-        break;
+      c = 1;
+      break;
+    }
+    else
+    {
+      printf("Geben Sie max. 20 Zeichen ein: ");
+      fgets(ZK, (21), stdin);
+
+      switch (Auswahl)
+      {
+        case '1':
+          num = num_chars(ZK);
+          printf("\nEs sind %d Zeichen in der Zeichenkette.\n", num);
+          break;
+        case '2':
+          *ZK = to_uppercase(ZK);
+          printf("\nDie Zeichenkette lautet: %s\n", ZK);
+          break;
+        case '3':
+          *ZK = invert(ZK);
+          printf("\nDie Zeichenkette lautet: %s\n", ZK);
+          break;
+        default:
+          printf("\nDie Eingabe war nicht korrekt!\n");
+          break;
+      }
     }
   }
   
