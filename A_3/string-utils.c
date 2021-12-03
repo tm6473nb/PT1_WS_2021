@@ -1,7 +1,17 @@
 #include <stdio.h>
-#include <ctype.h>
+#include <malloc.h>
 
 #include "string-utils.h"
+
+char * input_array()
+{
+  char * ia_ZK = (char *)malloc(20 * sizeof(char));
+
+  printf("Geben Sie max. 20 Zeichen ein: ");
+  fgets(ia_ZK, 21, stdin);
+  return ia_ZK;
+}
+
 
 int num_chars(char * nc_ZK)
 {
@@ -24,7 +34,8 @@ int num_chars(char * nc_ZK)
   return nc_num;
 }
 
-char to_uppercase(char * tu_ZK)
+
+char * to_uppercase(char * tu_ZK)
 {
   int tu_c = 0;
   int z = 0;
@@ -47,10 +58,11 @@ char to_uppercase(char * tu_ZK)
   z++;
   }
   tu_ZK-= z;
-  return *tu_ZK;
+  return tu_ZK;
 }
 
-char invert(char * ni_ZK)
+
+char * invert(char * ni_ZK)
 {
   int i_num;
   i_num = num_chars(ni_ZK);
@@ -61,7 +73,7 @@ char invert(char * ni_ZK)
 
   int i_z = 0;
 
-  char i_ZK[20];
+  char* i_ZK = (char*)malloc(20 * sizeof(char));
 
   for (int i = (i_num - 1); i >= 0; i--)
   {
@@ -71,7 +83,5 @@ char invert(char * ni_ZK)
     i_z++;
   }
 
-//Funktioniert noch nicht
-
-  return *i_ZK;
+  return i_ZK;
 }

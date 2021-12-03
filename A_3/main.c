@@ -1,16 +1,13 @@
 #include <stdio.h>
+#include <malloc.h>
+
 #include "string-utils.h"
 
 int main()
 {
-
-//  printf("%d = %c \n %c +10 = %c",
-//    'A','A',
-//    'A', 'A'+33
-//  );
   int num;
   int c = 0;
-  char ZK[21];
+  char * ZK;
   char Auswahl;
 
   while (c == 0)
@@ -33,8 +30,7 @@ int main()
     }
     else
     {
-      printf("Geben Sie max. 20 Zeichen ein: ");
-      fgets(ZK, (21), stdin);
+      char * ZK = input_array();
 
       switch (Auswahl)
       {
@@ -43,11 +39,11 @@ int main()
           printf("\nEs sind %d Zeichen in der Zeichenkette.\n", num);
           break;
         case '2':
-          *ZK = to_uppercase(ZK);
+          ZK = to_uppercase(ZK);
           printf("\nDie Zeichenkette lautet: %s\n", ZK);
           break;
         case '3':
-          *ZK = invert(ZK);
+          ZK = invert(ZK);
           printf("\nDie Zeichenkette lautet: %s\n", ZK);
           break;
         default:
@@ -58,5 +54,6 @@ int main()
   }
   
   printf("[ Shutting down ]\n");
+  //free(ZK);
   return 0;
 }
