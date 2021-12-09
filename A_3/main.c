@@ -55,5 +55,6 @@ int main()
   }
   
   printf("[ Shutting down ]\n");
+  //free(ZK);
   return 0;
 }
